@@ -4,11 +4,12 @@ import "../styles/Catalog.css";
 import "../styles/Products.css";
 import ProductsService from '../services/products.service';
 import ProductsList from "./ProductsList"
+import PropTypes, { string, array } from "prop-types"
 
 const Catalog = () =>{
     const inputRef = useRef(null);
     const checkRef = useRef();
-    const [select, setSelected] = useState()
+    const [select, setSelected] = useState();
     const [products, setProducts] = useState(ProductsService.getProducts());
     const [manufacturers] = useState(ProductsService.getManufacturers())
     
@@ -23,15 +24,16 @@ const Catalog = () =>{
     }
     
     const onClear = (e) =>{
-        e.preventDefault()
+        e.preventDefault();
         setProducts(ProductsService.getProducts())
-        inputRef.current.value=""
+        inputRef.current.value="";
+        checkRef.current.checked=true;
+        checkRef.current.checked=false;
         
     }
     
     useEffect(()=>{  
         setProducts(ProductsService.getProducts(select));  
-        
     },[select])
 
     return(
@@ -75,5 +77,11 @@ const Catalog = () =>{
     )
 }
 
+//select, products, manufacturers, inputs
+Catalog.propTypes ={
+    select: string,
+    products: array,
+    manufacturers:array,
 
+}
 export default Catalog;
