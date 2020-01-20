@@ -4,15 +4,16 @@ class ProductsService {
   
    static getProducts(company) {
     if(company){
-        if(typeof company === "string"){
-          let comp = company.charAt(0).toUpperCase() + company.slice(1)
-          return products.filter(product=>product.manufacture===comp)
-          
-        }else{
-          let string = company.current.value.toUpperCase();
-          return products.filter(product=>product.manufacture.toUpperCase().includes(string))
-        } 
-    }else{
+          if(typeof company === "string"){
+            let comp = company.charAt(0).toUpperCase() + company.slice(1)
+            return products.filter(product=>product.manufacture===comp)
+            
+          }else{
+            let string = company.current.value.toUpperCase();
+            return products.filter(product=>product.manufacture.toUpperCase().includes(string))
+          } 
+    }
+    else{
      return products;
     }
     

@@ -4,7 +4,7 @@ import "../styles/Catalog.css";
 import "../styles/Products.css";
 import ProductsService from '../services/products.service';
 import ProductsList from "./ProductsList"
-import PropTypes, { string, array } from "prop-types"
+import PropTypes from "prop-types"
 
 const Catalog = () =>{
     const inputRef = useRef(null);
@@ -32,7 +32,7 @@ const Catalog = () =>{
         
     }
     
-    useEffect(()=>{  
+    useEffect(()=>{ 
         setProducts(ProductsService.getProducts(select));  
     },[select])
 
@@ -77,11 +77,13 @@ const Catalog = () =>{
     )
 }
 
+Catalog.defaultProps = {
+    select: "all",
+    products: []
+}
 //select, products, manufacturers, inputs
 Catalog.propTypes ={
-    select: string,
-    products: array,
-    manufacturers:array,
-
+    select: PropTypes.string,
+    products: PropTypes.array
 }
 export default Catalog;
